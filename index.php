@@ -2,7 +2,14 @@
 
 $database = require 'core/bootstrap.php';
 
-var_dump($database->selectAll('task'));
+$database->selectAll('task');
 
-//$result = $database->selectAll('task');
-// show results
+
+$router = new Router;
+
+require 'routes.php';
+
+
+$uri = trim($_SERVER['REQUEST_URI'], '/');
+
+require $router->direct($uri);
